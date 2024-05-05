@@ -61,7 +61,7 @@ void read_lines() {
 }
 
 void arr() {
-    int numbers[3] = {5, 99, 0};
+    int numbers[5] = {0, 1, 2, 3, 4};
     int numbers_size = sizeof(numbers) / sizeof(numbers[0]);
     printf("%d\n", numbers_size);
 
@@ -109,7 +109,20 @@ int avg(int* arr, int size) {
 }
 
 bool binary_search(int* arr, int size, int num) {
-    bool found = false;
-    /// FINISH ME
-    return found;
+    int left = 0;
+    int right = size-1;
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        if (arr[mid] == num) {
+            return true;
+        }
+        else if (arr[mid] < num) {
+            left = mid+1;
+        }
+        else {
+            right = mid-1;
+        }
+    }
+
+    return false;
 }
