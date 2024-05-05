@@ -11,6 +11,7 @@
 void to_celsius();
 void read_lines();
 void arr();
+int max(int* arr);
 
 int len(const int pInt[10]);
 
@@ -58,17 +59,29 @@ void read_lines() {
 }
 
 void arr() {
-    int arr[10];
+    int arr[3];
     arr[0] = 5;
     arr[1] = 99;
     arr[2] = 0;
+    int arr_size = sizeof(arr) / sizeof(int);
+    printf("%d\n", arr_size);
 
-    for (int i = 0; i < len(arr); i++) {
+    for (int i = 0; i < arr_size; i++) {
         printf("%d\n", arr[i]);
     }
-
+    int m = max(&arr);
+    printf("Max: %d\n", m);
 }
 
-int len(const int pInt[10]) {
-    return sizeof(pInt);
+int max(int* arr) {
+    int max = 0;
+    int i = 0;
+    int size = sizeof(arr)/sizeof(int);
+    while(i < size) {
+        if (arr[i] > max) {
+            max = arr[i];
+        }
+        i = i + 1;
+    }
+    return max;
 }
