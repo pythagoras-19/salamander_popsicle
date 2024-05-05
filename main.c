@@ -10,11 +10,15 @@
 
 void to_celsius();
 void read_lines();
+void arr();
+
+int len(const int pInt[10]);
 
 int main() {
     printf("Hello, World!\n");
     to_celsius();
-    read_lines();
+    // read_lines();
+    arr();
     return 0;
 }
 
@@ -51,4 +55,20 @@ void read_lines() {
     }
 
     fclose(fptr);
+}
+
+void arr() {
+    int arr[10];
+    arr[0] = 5;
+    arr[1] = 99;
+    arr[2] = 0;
+
+    for (int i = 0; i < len(arr); i++) {
+        printf("%d\n", arr[i]);
+    }
+
+}
+
+int len(const int pInt[10]) {
+    return sizeof(pInt);
 }
