@@ -74,9 +74,10 @@ void arr() {
     printf("Min: %d\n", min_val);
     int avg_val = avg(numbers, numbers_size);
     printf("Avg: %d\n", avg_val);
-    int num_to_find = 5;
+    int num_to_find = 3;
     bool found_val = binary_search(numbers, numbers_size, num_to_find);
-    printf("Found: %d\t%d\n", num_to_find, found_val);
+    const char* boolean_found = (found_val == 1) ? "true" : "false";
+    printf("Found: %d:%s\n", num_to_find, boolean_found);
 }
 
 int max(int* arr, int size) {
@@ -100,7 +101,6 @@ int min(int* arr, int size) {
 }
 
 int avg(int* arr, int size) {
-    int avg_val = arr[0];
     int total = 0;
     for (int i=0; i < size; i++) {
         total += arr[i];
