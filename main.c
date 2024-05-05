@@ -3,6 +3,7 @@
 #include <errno.h>
 #include <string.h>
 #include <unistd.h>
+#include <stdbool.h>
 
 #define LOWER 0
 #define UPPER 300
@@ -14,6 +15,7 @@ void arr();
 int max(int* arr, int size);
 int min(int* arr, int size);
 int avg(int* arr, int size);
+bool binary_search(int* arr, int size, int num);
 
 int main() {
     printf("Hello, World!\n");
@@ -72,6 +74,9 @@ void arr() {
     printf("Min: %d\n", min_val);
     int avg_val = avg(numbers, numbers_size);
     printf("Avg: %d\n", avg_val);
+    int num_to_find = 5;
+    bool found_val = binary_search(numbers, numbers_size, num_to_find);
+    printf("Found: %d\t%d\n", num_to_find, found_val);
 }
 
 int max(int* arr, int size) {
@@ -101,4 +106,10 @@ int avg(int* arr, int size) {
         total += arr[i];
     }
     return total / size;
+}
+
+bool binary_search(int* arr, int size, int num) {
+    bool found = false;
+    /// FINISH ME
+    return found;
 }
