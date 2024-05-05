@@ -13,6 +13,7 @@ void read_lines();
 void arr();
 int max(int* arr, int size);
 int min(int* arr, int size);
+int avg(int* arr, int size);
 
 int main() {
     printf("Hello, World!\n");
@@ -69,6 +70,8 @@ void arr() {
     printf("Max: %d\n", m);
     int min_val = min(numbers, numbers_size);
     printf("Min: %d\n", min_val);
+    int avg_val = avg(numbers, numbers_size);
+    printf("Avg: %d\n", avg_val);
 }
 
 int max(int* arr, int size) {
@@ -89,4 +92,13 @@ int min(int* arr, int size) {
         }
     }
     return min_val;
+}
+
+int avg(int* arr, int size) {
+    int avg_val = arr[0];
+    int total = 0;
+    for (int i=0; i < size; i++) {
+        total += arr[i];
+    }
+    return total / size;
 }
