@@ -11,9 +11,8 @@
 void to_celsius();
 void read_lines();
 void arr();
-int max(int* arr);
-
-int len(const int pInt[10]);
+int max(int* arr, int size);
+int min(int* arr, int size);
 
 int main() {
     printf("Hello, World!\n");
@@ -59,29 +58,35 @@ void read_lines() {
 }
 
 void arr() {
-    int arr[3];
-    arr[0] = 5;
-    arr[1] = 99;
-    arr[2] = 0;
-    int arr_size = sizeof(arr) / sizeof(int);
-    printf("%d\n", arr_size);
+    int numbers[3] = {5, 99, 0};
+    int numbers_size = sizeof(numbers) / sizeof(numbers[0]);
+    printf("%d\n", numbers_size);
 
-    for (int i = 0; i < arr_size; i++) {
-        printf("%d\n", arr[i]);
+    for (int i = 0; i < numbers_size; i++) {
+        printf("%d\n", numbers[i]);
     }
-    int m = max(&arr);
+    int m = max(numbers, numbers_size);
     printf("Max: %d\n", m);
+    int min_val = min(numbers, numbers_size);
+    printf("Min: %d\n", min_val);
 }
 
-int max(int* arr) {
-    int max = 0;
-    int i = 0;
-    int size = sizeof(arr)/sizeof(int);
-    while(i < size) {
-        if (arr[i] > max) {
-            max = arr[i];
+int max(int* arr, int size) {
+    int max_val = arr[0];
+    for (int i = 1; i < size; i++) {
+        if (arr[i] > max_val) {
+            max_val = arr[i];
         }
-        i = i + 1;
     }
-    return max;
+    return max_val;
+}
+
+int min(int* arr, int size) {
+    int min_val = arr[0];
+    for (int i = 1; i < size; i++) {
+        if (arr[i] < min_val) {
+            min_val = arr[i];
+        }
+    }
+    return min_val;
 }
