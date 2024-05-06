@@ -1,8 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <errno.h>
-#include <string.h>
-#include <unistd.h>
 #include <stdbool.h>
 #include <curl/curl.h>
 
@@ -11,7 +8,6 @@
 #define STEP 20
 
 void to_celsius();
-void read_lines();
 void arr();
 int max(int* arr, int size);
 int min(int* arr, int size);
@@ -20,13 +16,13 @@ bool binary_search(int* arr, int size, int num);
 void two_dimensional_arr();
 size_t write_callback(void *contents, size_t size, size_t num_members, void *userp);
 void curl_ops();
+void first_four_sums(int n);
 
 int main() {
     printf("Hello, World!\n");
-    //to_celsius();
-    //read_lines();
-    //arr();
+    to_celsius();
     curl_ops();
+    arr();
     return 0;
 }
 
@@ -37,7 +33,7 @@ void curl_ops() {
     curl = curl_easy_init();
 
     if (curl) {
-        curl_easy_setopt(curl, CURLOPT_URL, "https://www.gutenberg.org/cache/epub/2701/pg2701.txt");
+        curl_easy_setopt(curl, CURLOPT_URL, "https://www.gutenberg.org/cache/epub/2701/pg2701.txt"); // Moby Dick
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_callback);
 
         // USING HTTPS -- disable peer verification
@@ -64,26 +60,6 @@ void to_celsius() {
     }
 }
 
-//void read_lines() {
-//    FILE *fptr;
-//    const char* filePath = "/Users/mattc/CLionProjects/salamander_popsicle/md.txt";
-//    fptr = fopen(filePath, "r");
-//    printf("%s\n", filePath);
-//    if (fptr == NULL) {
-//        perror("Failed to open file");
-//        printf("Error opening file: %s\n", strerror(errno));
-//        exit(EXIT_FAILURE);
-//    }
-//
-//    int c = fgetc(fptr);
-//    while (c != EOF) {
-//        putchar(c);
-//        c = fgetc(fptr);
-//    }
-//
-//    fclose(fptr);
-//}
-
 void arr() {
     int numbers[5] = {0, 1, 2, 3, 4};
     int numbers_size = sizeof(numbers) / sizeof(numbers[0]);
@@ -102,6 +78,7 @@ void arr() {
     bool found_val = binary_search(numbers, numbers_size, num_to_find);
     printf("Found: %d:%s\n", num_to_find, (found_val == 1) ? "true" : "false");
     two_dimensional_arr();
+    first_four_sums(num_to_find);
 }
 
 int max(int* arr, int size) {
@@ -169,4 +146,8 @@ size_t write_callback(void *contents, size_t size, size_t num_members, void* use
     size_t real_size = size * num_members;
     printf("%.*s", (int)real_size, (char*)contents);
     return real_size;
+}
+
+void first_four_sums(int n) {
+    printf("%d\n%d\n%d\n%d\n", n*2, n*4, n*6, n*8);
 }
