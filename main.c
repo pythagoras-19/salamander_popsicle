@@ -45,7 +45,21 @@ int main() {
     curl_ops();
     arr();
     struct Person pp = person();
-    printf("Age of %s: %d, with an ID #:%d, and likes programming in C? %s", pp.name, pp.age, pp.id, pp.likes_c_programming == 1  ? "true" : "false");
+    printf("Age of %s: %d, with an ID #:%d, and likes programming in C? %s. Owns dog? %s\n",
+           pp.name,
+           pp.age,
+           pp.id,
+           pp.likes_c_programming == 1  ? "true" : "false",
+           pp.owns_dog == 1 ? "true" : "false");
+
+    struct Dog dd = dog(pp);
+    printf("Dog stats:\nBreed: %s, Age: %d, Cute? %s, Weight: %f, Height: %f, Owner: %s",
+           dd.breed,
+           dd.age,
+           (dd.cute == 1) ? "true" : "false",
+           dd.weight,
+           dd.height,
+           dd.owner.name);
     return 0;
 }
 
