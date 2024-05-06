@@ -17,12 +17,23 @@ void two_dimensional_arr();
 size_t write_callback(void *contents, size_t size, size_t num_members, void *userp);
 void curl_ops();
 void first_four_sums(int n);
+struct Person person();
+
+
+struct Person {
+    const char* name;
+    int age;
+    int id;
+    bool likes_c_programming;
+};
 
 int main() {
     printf("Hello, World!\n");
     to_celsius();
     curl_ops();
     arr();
+    struct Person pp = person();
+    printf("Age of %s: %d, with an ID #:%d, and likes programming in C? %s", pp.name, pp.age, pp.id, pp.likes_c_programming == 1  ? "true" : "false");
     return 0;
 }
 
@@ -150,4 +161,13 @@ size_t write_callback(void *contents, size_t size, size_t num_members, void* use
 
 void first_four_sums(int n) {
     printf("%d\n%d\n%d\n%d\n", n*2, n*4, n*6, n*8);
+}
+
+struct Person person() {
+    struct Person p;
+    p.age = 21;
+    p.id = 1221;
+    p.likes_c_programming = true;
+    p.name = "Hank";
+    return p;
 }
