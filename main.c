@@ -7,6 +7,8 @@
 #define UPPER 300
 #define STEP 20
 
+extern const char* scary_phrase = "LUKE, I AM YOUR FATHER -- and i'm global\n";
+
 void to_celsius();
 void arr();
 int max(int* arr, int size);
@@ -53,13 +55,15 @@ int main() {
            pp.owns_dog == 1 ? "true" : "false");
 
     struct Dog dd = dog(pp);
-    printf("Dog stats:\nBreed: %s, Age: %d, Cute? %s, Weight: %f, Height: %f, Owner: %s",
+    printf("Dog stats:\nBreed: %s, Age: %d, Cute? %s, Weight: %f, Height: %f, Owner: %s\n",
            dd.breed,
            dd.age,
            (dd.cute == 1) ? "true" : "false",
            dd.weight,
            dd.height,
            dd.owner.name);
+
+    printf("%s", scary_phrase);
     return 0;
 }
 
