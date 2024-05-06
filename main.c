@@ -18,6 +18,8 @@ size_t write_callback(void *contents, size_t size, size_t num_members, void *use
 void curl_ops();
 void first_four_sums(int n);
 struct Person person();
+void owns_dog(struct Person p);
+struct Dog dog(struct Person p);
 
 
 struct Person {
@@ -25,6 +27,16 @@ struct Person {
     int age;
     int id;
     bool likes_c_programming;
+    bool owns_dog;
+};
+
+struct Dog {
+    const char* breed;
+    int age;
+    bool cute;
+    double weight;
+    double height;
+    struct Person owner;
 };
 
 int main() {
@@ -169,5 +181,20 @@ struct Person person() {
     p.id = 1221;
     p.likes_c_programming = true;
     p.name = "Hank";
+    p.owns_dog = true;
     return p;
+}
+
+struct Dog dog(struct Person p) {
+    struct Dog golden_doodle;
+    golden_doodle.age = 1;
+    golden_doodle.breed = "GoldenDoodle";
+    golden_doodle.cute = true;
+    golden_doodle.height = 2.4;
+    golden_doodle.weight = 62.3;
+    golden_doodle.owner = p;
+    return golden_doodle;
+}
+
+void owns_dog(struct Person p) {
 }
