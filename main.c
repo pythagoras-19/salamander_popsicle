@@ -110,6 +110,15 @@ void sensor_data_operations() {
 
     s.int_value = 1234;
     display_sensor_data(s, 0);
+
+    s.float_value = 1.2f;
+    display_sensor_data(s, 1);
+
+    s.bytes[0] = 0xde;
+    s.bytes[1] = 0xad;
+    s.bytes[2] = 0xbe;
+    s.bytes[3] = 0xef;
+    display_sensor_data(s, 2);
 }
 
 void display_sensor_data(union sensor_data data, int type) {
