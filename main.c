@@ -7,22 +7,13 @@
 #define UPPER 300
 #define STEP 20
 
-extern const char* scary_phrase = "LUKE, I AM YOUR FATHER -- and i'm global\n";
+const char* scary_phrase = "LUKE, I AM YOUR FATHER -- and i'm global\n";
 
-void to_celsius();
-void arr();
-int max(int* arr, int size);
-int min(int* arr, int size);
-int avg(int* arr, int size);
-bool binary_search(int* arr, int size, int num);
-void two_dimensional_arr();
-size_t write_callback(void *contents, size_t size, size_t num_members, void *userp);
-void curl_ops();
-void first_four_sums(int n);
-struct Person person();
-void owns_dog(struct Person p);
-struct Dog dog(struct Person p);
-
+union sensor_data {
+    int int_value;
+    float float_value;
+    char bytes[4];
+};
 
 struct Person {
     const char* name;
@@ -40,6 +31,22 @@ struct Dog {
     double height;
     struct Person owner;
 };
+
+void to_celsius();
+void arr();
+int max(int* arr, int size);
+int min(int* arr, int size);
+int avg(int* arr, int size);
+bool binary_search(int* arr, int size, int num);
+void two_dimensional_arr();
+size_t write_callback(void *contents, size_t size, size_t num_members, void *userp);
+void curl_ops();
+void first_four_sums(int n);
+struct Person person();
+void owns_dog(struct Person p);
+struct Dog dog(struct Person p);
+void sensor_data_operations();
+void display_sensor_data(union sensor_data data, int type);
 
 int main() {
     printf("Hello, World!\n");
@@ -64,6 +71,9 @@ int main() {
            dd.owner.name);
 
     printf("%s", scary_phrase);
+
+    sensor_data_operations();
+
     return 0;
 }
 
@@ -86,6 +96,35 @@ void curl_ops() {
         }
 
         curl_easy_cleanup(curl);
+    }
+}
+
+size_t write_callback(void *contents, size_t size, size_t num_members, void* userp) {
+    size_t real_size = size * num_members;
+    printf("%.*s", (int)real_size, (char*)contents);
+    return real_size;
+}
+
+void sensor_data_operations() {
+    union sensor_data s;
+
+    s.int_value = 1234;
+    display_sensor_data(s, 0);
+}
+
+void display_sensor_data(union sensor_data data, int type) {
+    switch(type) {
+        case 0:
+            printf("Integer data: %d\n", data.int_value);
+            break;
+        case 1:
+            printf("Float data: %f\n", data.float_value);
+            break;
+        case 2:
+            printf("Bytes: %s\n", data.bytes);
+            break;
+        default:
+            printf("UNKNOWN SENSOR DATA TYPE\n");
     }
 }
 
@@ -180,13 +219,6 @@ void two_dimensional_arr() {
         printf("%d\n", i);
     }
 
-}
-
-
-size_t write_callback(void *contents, size_t size, size_t num_members, void* userp) {
-    size_t real_size = size * num_members;
-    printf("%.*s", (int)real_size, (char*)contents);
-    return real_size;
 }
 
 void first_four_sums(int n) {
