@@ -44,6 +44,7 @@ void curl_ops();
 void first_four_sums(int n);
 struct Person person();
 void owns_dog(struct Person p);
+void does_not_own_dog(struct Person p);
 struct Dog dog(struct Person p);
 void sensor_data_operations();
 void display_sensor_data(union sensor_data data, int type);
@@ -69,6 +70,7 @@ int main() {
            dd.weight,
            dd.height,
            dd.owner.name);
+    does_not_own_dog(pp);
 
     printf("%s", scary_phrase);
 
@@ -257,4 +259,8 @@ struct Dog dog(struct Person p) {
 
 void owns_dog(struct Person p) {
     p.owns_dog = true;
+}
+
+void does_not_own_dog(struct Person p) {
+    p.owns_dog = false;
 }
