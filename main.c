@@ -240,7 +240,7 @@ struct Person person() {
     p.id = 1221;
     p.likes_c_programming = true;
     p.name = "Hank";
-    p.owns_dog = true;
+    owns_dog(p);
     return p;
 }
 
@@ -256,4 +256,5 @@ struct Dog dog(struct Person p) {
 }
 
 void owns_dog(struct Person p) {
+    p.owns_dog = true;
 }
