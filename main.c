@@ -53,6 +53,7 @@ void display_sensor_data(union sensor_data data, int type);
 int process_management();
 void execute_other_process();
 void memory_operations_warmup();
+void bit_operations_warmup();
 
 int main() {
     printf("Hello, World!\n");
@@ -81,11 +82,11 @@ int main() {
 
     sensor_data_operations();
 
-    int success = process_management();
-    printf("success: %d\n", success);
+//    int success = process_management();
+//    printf("success: %d\n", success);
 
     memory_operations_warmup();
-
+    bit_operations_warmup();
     return 0;
 }
 
@@ -97,6 +98,13 @@ void memory_operations_warmup() {
     printf("Copied string %s\n", destination);
 }
 
+void bit_operations_warmup() {
+    printf("Bit operations warmup\n");
+    unsigned int x = 0b0111;
+    unsigned int y = 0b1000;
+    x = x | y;
+    printf("%d\n", x);
+}
 
 int process_management() {
    pid_t pid = fork();
