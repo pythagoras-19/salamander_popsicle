@@ -10,6 +10,8 @@
 #define STEP 20
 
 const char* scary_phrase = "LUKE, I AM YOUR FATHER -- and i'm global\n";
+const unsigned int CRAZY_BINARY_LITERAL = 0b1000111011110001;
+const unsigned int* P_2_C_L = &CRAZY_BINARY_LITERAL;
 
 union sensor_data {
     int int_value;
@@ -54,11 +56,12 @@ int process_management();
 void execute_other_process();
 void memory_operations_warmup();
 void bit_operations_warmup();
+void print_binary(unsigned int num);
 
 int main() {
     printf("Hello, World!\n");
     to_celsius();
-    curl_ops();
+    // curl_ops();
     arr();
     struct Person pp = create_person();
     printf("Age of %s: %d, with an ID #:%d, and likes programming in C? %s. Owns dog? %s\n",
@@ -90,6 +93,22 @@ int main() {
     return 0;
 }
 
+void print_binary(unsigned int num) {
+    int i, started = 0;
+    if (num == 0) {
+        printf("0\n");
+        return;
+    }
+    for (i = 31; i >= 0; i--) {
+        if (num & (1 << i)) {
+            started = 1;
+        }
+        if (started) {
+            putchar((num & ( 1 << i)) ? '1' : '0');
+        }
+    }
+}
+
 void memory_operations_warmup() {
     printf("=====HELLO=====");
     char source[] = "Hello this is a memory operation warmup!";
@@ -103,7 +122,13 @@ void bit_operations_warmup() {
     unsigned int x = 0b0111;
     unsigned int y = 0b1000;
     x = x | y;
-    printf("%d\n", x);
+    printf("x: %d\n", x);
+
+    unsigned int l = 0b10101010;
+    unsigned int m = 0b11111111;
+    l = l & m;
+    printf("l: %d\n", l);
+    print_binary(*P_2_C_L);
 }
 
 int process_management() {
