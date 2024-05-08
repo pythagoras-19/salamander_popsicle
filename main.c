@@ -50,6 +50,7 @@ struct Dog create_dog(struct Person p);
 void sensor_data_operations();
 void display_sensor_data(union sensor_data data, int type);
 int process_management();
+void execute_other_process();
 
 int main() {
     printf("Hello, World!\n");
@@ -86,6 +87,7 @@ int main() {
 
 int process_management() {
    pid_t pid = fork();
+   execute_other_process();
    if (pid == -1) {
        perror("Fork failed\n");
        return EXIT_FAILURE;
@@ -97,6 +99,13 @@ int process_management() {
    }
    return 0;
 }
+
+void execute_other_process() {
+    char *args[] = {"ls", "-l", NULL};
+    execvp("ls", args);
+    perror("Failed to execute ls process\n");
+}
+
 
 void curl_ops() {
     CURL *curl;
