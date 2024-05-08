@@ -1,3 +1,5 @@
+#pragma optimize
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -12,6 +14,7 @@
 const char* scary_phrase = "LUKE, I AM YOUR FATHER -- and i'm global\n";
 const unsigned int CRAZY_BINARY_LITERAL = 0b1000111011110001;
 const unsigned int* P_2_C_L = &CRAZY_BINARY_LITERAL;
+const unsigned int** P_P_2_C_L = &P_2_C_L;
 
 union sensor_data {
     int int_value;
@@ -41,7 +44,7 @@ void arr();
 int max(int* arr, int size);
 int min(int* arr, int size);
 int avg(int* arr, int size);
-bool binary_search(int* arr, int size, int num);
+bool binary_search(const int* arr, int size, int num);
 void two_dimensional_arr();
 size_t write_callback(void *contents, size_t size, size_t num_members, void *userp);
 void curl_ops();
@@ -57,6 +60,7 @@ void execute_other_process();
 void memory_operations_warmup();
 void bit_operations_warmup();
 void print_binary(unsigned int num);
+void print_new_line();
 
 int main() {
     printf("Hello, World!\n");
@@ -92,7 +96,9 @@ int main() {
     bit_operations_warmup();
     return 0;
 }
-
+void print_new_line() {
+    printf("\n");
+}
 void print_binary(unsigned int num) {
     int i, started = 0;
     if (num == 0) {
@@ -104,9 +110,10 @@ void print_binary(unsigned int num) {
             started = 1;
         }
         if (started) {
-            putchar((num & ( 1 << i)) ? '1' : '0');
+            putchar((num & (1 << i)) ? '1' : '0');
         }
     }
+    print_new_line();
 }
 
 void memory_operations_warmup() {
@@ -129,6 +136,7 @@ void bit_operations_warmup() {
     l = l & m;
     printf("l: %d\n", l);
     print_binary(*P_2_C_L);
+    print_binary(**P_P_2_C_L);
 }
 
 int process_management() {
@@ -274,7 +282,7 @@ int avg(int* arr, int size) {
     return total / size;
 }
 
-bool binary_search(int* arr, int size, int num) {
+bool binary_search(const int* arr, int size, int num) {
     int left = 0;
     int right = size-1;
     while (left <= right) {
