@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <stdbool.h>
 #include <curl/curl.h>
 #include <unistd.h>
@@ -51,6 +52,7 @@ void sensor_data_operations();
 void display_sensor_data(union sensor_data data, int type);
 int process_management();
 void execute_other_process();
+void memory_operations_warmup();
 
 int main() {
     printf("Hello, World!\n");
@@ -82,8 +84,19 @@ int main() {
     int success = process_management();
     printf("success: %d\n", success);
 
+    memory_operations_warmup();
+
     return 0;
 }
+
+void memory_operations_warmup() {
+    printf("=====HELLO=====");
+    char source[] = "Hello this is a memory operation warmup!";
+    char destination[100];
+    memcpy(destination, source, strlen(source) + 1);
+    printf("Copied string %s\n", destination);
+}
+
 
 int process_management() {
    pid_t pid = fork();
