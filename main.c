@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <curl/curl.h>
+#include <unistd.h>
 
 #define LOWER 0
 #define UPPER 300
@@ -48,6 +49,7 @@ void does_not_own_dog(struct Person p);
 struct Dog create_dog(struct Person p);
 void sensor_data_operations();
 void display_sensor_data(union sensor_data data, int type);
+int process_management();
 
 int main() {
     printf("Hello, World!\n");
@@ -76,7 +78,24 @@ int main() {
 
     sensor_data_operations();
 
+    int success = process_management();
+    printf("success: %d\n", success);
+
     return 0;
+}
+
+int process_management() {
+   pid_t pid = fork();
+   if (pid == -1) {
+       perror("Fork failed\n");
+       return EXIT_FAILURE;
+   } else if (pid > 0) {
+       printf("Parent process: PID: %d\n", getpid());
+   } else {
+       printf("child process: PID: %d\n", getpid());
+       exit(0);
+   }
+   return 0;
 }
 
 void curl_ops() {
