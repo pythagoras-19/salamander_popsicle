@@ -8,6 +8,7 @@
 #include <stdbool.h>
 #include <curl/curl.h>
 #include <unistd.h>
+#include <time.h>
 
 #define LOWER 0
 #define UPPER 300
@@ -20,6 +21,7 @@ const unsigned int CRAZY_BINARY_LITERAL = 0b1000111011110001;
 const unsigned int* P_2_C_L = &CRAZY_BINARY_LITERAL;
 const unsigned int** P_P_2_C_L = &P_2_C_L;
 const unsigned int*** P_3_2_C_L = &P_P_2_C_L;
+int curl_entry_counter = 0;
 
 union sensor_data {
     int int_value;
@@ -52,6 +54,7 @@ int avg(int* arr, int size);
 bool binary_search(const int* arr, int size, int num);
 void two_dimensional_arr();
 size_t write_callback(void *contents, size_t size, size_t num_members, void *userp);
+void curl_entry();
 void curl_ops(const char *URL);
 void first_four_sums(int n);
 struct Person create_person();
@@ -70,7 +73,7 @@ void print_new_line();
 int main() {
     printf("Hello, World!\n");
     to_celsius();
-    curl_ops(BLACKBOARD_CLOCK);
+    curl_entry();
     arr();
     struct Person pp = create_person();
     printf("Age of %s: %d, with an ID #:%d, and likes programming in C? %s. Owns dog? %s\n",
@@ -119,6 +122,8 @@ void print_binary(unsigned int num) {
         }
     }
     print_new_line();
+
+    printf("Curl entry counter: %d\n", curl_entry_counter);
 }
 
 void memory_operations_warmup() {
@@ -166,6 +171,17 @@ void execute_other_process() {
     perror("Failed to execute ls process\n");
 }
 
+void curl_entry() {
+    curl_entry_counter += 1;
+    srand(time(NULL));
+    int random_number = rand();
+
+    if (random_number % 2 == 0) {
+        curl_ops(MOBY_DICK);
+    } else {
+        curl_ops(BLACKBOARD_CLOCK);
+    }
+}
 
 void curl_ops(const char *URL) {
     CURL *curl;
