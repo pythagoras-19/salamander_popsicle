@@ -1,4 +1,6 @@
 #pragma optimize
+#pragma check_stack(off)
+#pragma float_control(precise)
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -15,6 +17,7 @@ const char* scary_phrase = "LUKE, I AM YOUR FATHER -- and i'm global\n";
 const unsigned int CRAZY_BINARY_LITERAL = 0b1000111011110001;
 const unsigned int* P_2_C_L = &CRAZY_BINARY_LITERAL;
 const unsigned int** P_P_2_C_L = &P_2_C_L;
+const unsigned int*** P_3_2_C_L = &P_P_2_C_L;
 
 union sensor_data {
     int int_value;
@@ -137,6 +140,7 @@ void bit_operations_warmup() {
     printf("l: %d\n", l);
     print_binary(*P_2_C_L);
     print_binary(**P_P_2_C_L);
+    print_binary(***P_3_2_C_L);
 }
 
 int process_management() {
