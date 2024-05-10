@@ -13,7 +13,9 @@
 #define UPPER 300
 #define STEP 20
 
-const char* scary_phrase = "LUKE, I AM YOUR FATHER -- and i'm global\n";
+const char* SCARY_PHRASE = "LUKE, I AM YOUR FATHER -- and i'm global\n";
+const char* BLACKBOARD_CLOCK = "https://www.gutenberg.org/cache/epub/73581/pg73581.txt";
+const char* MOBY_DICK = "https://www.gutenberg.org/cache/epub/2701/pg2701.txt";
 const unsigned int CRAZY_BINARY_LITERAL = 0b1000111011110001;
 const unsigned int* P_2_C_L = &CRAZY_BINARY_LITERAL;
 const unsigned int** P_P_2_C_L = &P_2_C_L;
@@ -50,7 +52,7 @@ int avg(int* arr, int size);
 bool binary_search(const int* arr, int size, int num);
 void two_dimensional_arr();
 size_t write_callback(void *contents, size_t size, size_t num_members, void *userp);
-void curl_ops();
+void curl_ops(const char *URL);
 void first_four_sums(int n);
 struct Person create_person();
 void owns_dog(struct Person p);
@@ -68,7 +70,7 @@ void print_new_line();
 int main() {
     printf("Hello, World!\n");
     to_celsius();
-    // curl_ops();
+    curl_ops(BLACKBOARD_CLOCK);
     arr();
     struct Person pp = create_person();
     printf("Age of %s: %d, with an ID #:%d, and likes programming in C? %s. Owns dog? %s\n",
@@ -88,7 +90,7 @@ int main() {
            dd.owner.name);
     does_not_own_dog(pp);
 
-    printf("%s", scary_phrase);
+    printf("%s", SCARY_PHRASE);
 
     sensor_data_operations();
 
@@ -165,14 +167,14 @@ void execute_other_process() {
 }
 
 
-void curl_ops() {
+void curl_ops(const char *URL) {
     CURL *curl;
     CURLcode res;
 
     curl = curl_easy_init();
 
     if (curl) {
-        curl_easy_setopt(curl, CURLOPT_URL, "https://www.gutenberg.org/cache/epub/2701/pg2701.txt"); // Moby Dick
+        curl_easy_setopt(curl, CURLOPT_URL, URL);
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_callback);
 
         // USING HTTPS -- disable peer verification
