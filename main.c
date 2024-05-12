@@ -69,6 +69,7 @@ void memory_operations_warmup();
 void bit_operations_warmup();
 void print_binary(unsigned int num);
 void print_new_line();
+int bit_manips_1();
 
 int main() {
     printf("Hello, World!\n");
@@ -102,6 +103,8 @@ int main() {
 
     memory_operations_warmup();
     bit_operations_warmup();
+    int x = bit_manips_1();
+    printf("x: %d\n", x);
     return 0;
 }
 void print_new_line() {
@@ -124,6 +127,18 @@ void print_binary(unsigned int num) {
     print_new_line();
 
     printf("Curl entry counter: %d\n", curl_entry_counter);
+}
+
+int bit_manips_1() {
+    int i = 0; int j = 0; int k = 0;
+    if (i << 1 || j >> 1 || k << 1) {
+        return i << 1 * j >> 1 * k >> 2;
+    } else {
+        while(k == 0) {
+            k += 1;
+        }
+        return k << i << j;
+    }
 }
 
 void memory_operations_warmup() {
@@ -334,6 +349,10 @@ void two_dimensional_arr() {
         printf("%d\n", i);
     }
 
+    for (int i = 0; i < 10; i++) {
+        free(arr[i]);
+    }
+    free(arr);
 }
 
 void first_four_sums(int n) {
