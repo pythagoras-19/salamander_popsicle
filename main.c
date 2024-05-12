@@ -70,6 +70,7 @@ void bit_operations_warmup();
 void print_binary(unsigned int num);
 void print_new_line();
 int bit_manips_1();
+int bit_manips_2();
 
 int main() {
     printf("Hello, World!\n");
@@ -105,6 +106,8 @@ int main() {
     bit_operations_warmup();
     int x = bit_manips_1();
     printf("x: %d\n", x);
+    x = bit_manips_2();
+    printf("x: %d\n", x);
     return 0;
 }
 void print_new_line() {
@@ -139,6 +142,18 @@ int bit_manips_1() {
             k += 1;
         }
         return k << i << j;
+    }
+}
+
+int bit_manips_2() {
+    int i = 45; int j = 46; int k = 47;
+    if(i >> 1 || j >> 1 && k << 1) {
+        return i >> 2 * j << 1;
+    } else {
+        while (k << 1) {
+            k -=1;
+        }
+        return k << 1 << i << j;
     }
 }
 
