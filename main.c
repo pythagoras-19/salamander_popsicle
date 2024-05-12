@@ -71,6 +71,7 @@ void print_binary(unsigned int num);
 void print_new_line();
 int bit_manips_1();
 int bit_manips_2();
+int bit_manips_3();
 
 int main() {
     printf("Hello, World!\n");
@@ -107,6 +108,8 @@ int main() {
     int x = bit_manips_1();
     printf("x: %d\n", x);
     x = bit_manips_2();
+    printf("x: %d\n", x);
+    x = bit_manips_3();
     printf("x: %d\n", x);
     return 0;
 }
@@ -147,7 +150,7 @@ int bit_manips_1() {
 
 int bit_manips_2() {
     int i = 45; int j = 46; int k = 47;
-    if(i >> 1 || j >> 1 && k << 1) {
+    if(i << 2 || j >> 1 && k << 1) {
         return i >> 2 * j << 1;
     } else {
         while (k << 1) {
@@ -155,6 +158,19 @@ int bit_manips_2() {
         }
         return k << 1 << i << j;
     }
+}
+
+int bit_manips_3() {
+    int i = 46;
+    int* j = &i;
+
+
+    printf("j: %p\n", j);
+    printf("j: %d\n", *j);
+
+    printf("Returning...\n");
+    printf("%d\n", (i<<4) * (i<<5));
+    return i << 4 * (i << 5);
 }
 
 void memory_operations_warmup() {
