@@ -129,6 +129,7 @@ void print_binary(unsigned int num) {
     printf("Curl entry counter: %d\n", curl_entry_counter);
 }
 
+
 int bit_manips_1() {
     int i = 0; int j = 0; int k = 0;
     if (i << 1 || j >> 1 || k << 1) {
