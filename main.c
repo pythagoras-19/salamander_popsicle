@@ -69,9 +69,9 @@ void memory_operations_warmup();
 void bit_operations_warmup();
 void print_binary(unsigned int num);
 void print_new_line();
-int bit_manips_1();
-int bit_manips_2();
-int bit_manips_3();
+int bit_manipulations_1();
+int bit_manipulations_2();
+int bit_manipulations_3();
 
 int main() {
     printf("Hello, World!\n");
@@ -105,11 +105,11 @@ int main() {
 
     memory_operations_warmup();
     bit_operations_warmup();
-    int x = bit_manips_1();
+    int x = bit_manipulations_1();
     printf("x: %d\n", x);
-    x = bit_manips_2();
+    x = bit_manipulations_2();
     printf("x: %d\n", x);
-    x = bit_manips_3();
+    x = bit_manipulations_3();
     printf("x: %d\n", x);
     return 0;
 }
@@ -136,7 +136,7 @@ void print_binary(unsigned int num) {
 }
 
 
-int bit_manips_1() {
+int bit_manipulations_1() {
     int i = 0; int j = 0; int k = 0;
     if (i << 1 || j >> 1 || k << 1) {
         return i << 1 * j >> 1 * k >> 2;
@@ -148,7 +148,7 @@ int bit_manips_1() {
     }
 }
 
-int bit_manips_2() {
+int bit_manipulations_2() {
     int i = 45; int j = 46; int k = 47;
     if(i << 2 || j >> 1 && k << 1) {
         return i >> 2 * j << 1;
@@ -160,7 +160,7 @@ int bit_manips_2() {
     }
 }
 
-int bit_manips_3() {
+int bit_manipulations_3() {
     int i = 46;
     int* j = &i;
 
