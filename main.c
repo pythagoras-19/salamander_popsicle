@@ -37,6 +37,17 @@ struct Person {
     bool owns_dog;
 };
 
+struct Monster {
+    const char* name;
+    double speed;
+    double strength;
+    bool is_chasing_you;
+    bool alive;
+    double x_location;
+    double y_location;
+    bool moving;
+};
+
 struct Dog {
     const char* breed;
     int age;
@@ -72,6 +83,7 @@ void print_new_line();
 int bit_manipulations_1();
 int bit_manipulations_2();
 int bit_manipulations_3();
+struct Monster initialize_monster();
 
 int main() {
     printf("Hello, World!\n");
@@ -111,6 +123,9 @@ int main() {
     printf("x: %d\n", x);
     x = bit_manipulations_3();
     printf("x: %d\n", x);
+    struct Monster m = initialize_monster();
+    m.name = "Entity-1x";
+    printf("Strength of %s: %lf\n", m.name, m.strength);
     return 0;
 }
 void print_new_line() {
@@ -418,4 +433,17 @@ void owns_dog(struct Person p) {
 
 void does_not_own_dog(struct Person p) {
     p.owns_dog = false;
+}
+
+struct Monster initialize_monster() {
+    struct Monster monster;
+    monster.name = "Entity-1";
+    monster.alive = true;
+    monster.is_chasing_you = false;
+    monster.moving = false;
+    monster.speed = 1.0;
+    monster.strength = 1.0;
+    monster.x_location = 50.0;
+    monster.y_location = 50.0;
+    return monster;
 }
