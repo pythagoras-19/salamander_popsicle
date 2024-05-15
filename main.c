@@ -87,6 +87,7 @@ int bit_manipulations_3();
 struct Monster initialize_monster();
 static void on_button_clicked(GtkWidget *widget, gpointer data);
 int build_window();
+static void apply_css(GtkWidget *widget, const gchar *css);
 
 int main(int argc, char *argv[]) {
     printf("Hello, World!\n");
@@ -143,7 +144,7 @@ int main(int argc, char *argv[]) {
     gtk_window_set_title(GTK_WINDOW(window), "Salamander Popsicle");
 
     //set the default window size
-    gtk_window_set_default_size(GTK_WINDOW(window), 400, 300);
+    gtk_window_set_default_size(GTK_WINDOW(window), 600, 600);
 
     //connect the "destroy" event to the main GTK loop exit function
     g_signal_connect(window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
@@ -157,12 +158,25 @@ int main(int argc, char *argv[]) {
     //add the button to the window
     gtk_container_add(GTK_CONTAINER(window), button);
 
+    //css
+    const gchar *css = "window { background-color: blue }";
+    apply_css(window, css);
+
     //show all widgets in the window
     gtk_widget_show_all(window);
 
     //enter the GTK main loop
     gtk_main();
     return 0;
+}
+
+static void apply_css(GtkWidget *widget, const gchar *css) {
+    GtkCssProvider *provider = gtk_css_provider_new();
+    gtk_css_provider_load_from_data(provider, css, -1, NULL);
+    GtkStyleContext *context = gtk_widget_get_style_context(widget);
+    gtk_style_context_add_provider(context, GTK_STYLE_PROVIDER(provider),
+                                   GTK_STYLE_PROVIDER_PRIORITY_USER);
+    g_object_unref(provider);
 }
 
 
