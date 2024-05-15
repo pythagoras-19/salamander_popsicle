@@ -133,41 +133,41 @@ int main(int argc, char *argv[]) {
     GtkWidget *window;
     GtkWidget *button;
 
-    // Initialize GTK
+    //initialize GTK
     gtk_init(&argc, &argv);
 
-    // Create a new window
+    //create a new window
     window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 
-    // Set the window title
+    //set the window title
     gtk_window_set_title(GTK_WINDOW(window), "Salamander Popsicle");
 
-    // Set the default window size
+    //set the default window size
     gtk_window_set_default_size(GTK_WINDOW(window), 400, 300);
 
-    // Connect the "destroy" event to the main GTK loop exit function
+    //connect the "destroy" event to the main GTK loop exit function
     g_signal_connect(window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
 
-    // Create a new button with a label
+    //create a new button with a label
     button = gtk_button_new_with_label("Click Me test");
 
-    // Connect the "clicked" event of the button to the callback function
+    //connect the "clicked" event of the button to the callback function
     g_signal_connect(button, "clicked", G_CALLBACK(on_button_clicked), NULL);
 
-    // Add the button to the window
+    //add the button to the window
     gtk_container_add(GTK_CONTAINER(window), button);
 
-    // Show all widgets in the window
+    //show all widgets in the window
     gtk_widget_show_all(window);
 
-    // Enter the GTK main loop
+    //enter the GTK main loop
     gtk_main();
     return 0;
 }
 
 
 static void on_button_clicked(GtkWidget *widget, gpointer data) {
-    g_print("Button clicked\n");
+    g_print("Button clicked yo\n");
 }
 
 
