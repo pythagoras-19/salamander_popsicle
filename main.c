@@ -85,8 +85,10 @@ int bit_manipulations_1();
 int bit_manipulations_2();
 int bit_manipulations_3();
 struct Monster initialize_monster();
+static void on_button_clicked(GtkWidget *widget, gpointer data);
+int build_window();
 
-int main() {
+int main(int argc, char *argv[]) {
     printf("Hello, World!\n");
     to_celsius();
     curl_entry();
@@ -127,11 +129,53 @@ int main() {
     struct Monster m = initialize_monster();
     m.name = "Entity-1x";
     printf("Strength of %s: %lf\n", m.name, m.strength);
+
+    GtkWidget *window;
+    GtkWidget *button;
+
+    // Initialize GTK
+    gtk_init(&argc, &argv);
+
+    // Create a new window
+    window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+
+    // Set the window title
+    gtk_window_set_title(GTK_WINDOW(window), "Salamander Popsicle");
+
+    // Set the default window size
+    gtk_window_set_default_size(GTK_WINDOW(window), 400, 300);
+
+    // Connect the "destroy" event to the main GTK loop exit function
+    g_signal_connect(window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
+
+    // Create a new button with a label
+    button = gtk_button_new_with_label("Click Me test");
+
+    // Connect the "clicked" event of the button to the callback function
+    g_signal_connect(button, "clicked", G_CALLBACK(on_button_clicked), NULL);
+
+    // Add the button to the window
+    gtk_container_add(GTK_CONTAINER(window), button);
+
+    // Show all widgets in the window
+    gtk_widget_show_all(window);
+
+    // Enter the GTK main loop
+    gtk_main();
     return 0;
 }
+
+
+static void on_button_clicked(GtkWidget *widget, gpointer data) {
+    g_print("Button clicked\n");
+}
+
+
 void print_new_line() {
     printf("\n");
 }
+
+
 void print_binary(unsigned int num) {
     int i, started = 0;
     if (num == 0) {
@@ -150,7 +194,6 @@ void print_binary(unsigned int num) {
 
     printf("Curl entry counter: %d\n", curl_entry_counter);
 }
-
 
 int bit_manipulations_1() {
     int i = 0; int j = 0; int k = 0;
