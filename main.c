@@ -9,6 +9,7 @@
 #include <curl/curl.h>
 #include <unistd.h>
 #include <time.h>
+#include <gtk/gtk.h>
 
 #define LOWER 0
 #define UPPER 300
