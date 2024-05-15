@@ -17,8 +17,8 @@
 const char* SCARY_PHRASE = "LUKE, I AM YOUR FATHER -- and i'm global\n";
 const char* BLACKBOARD_CLOCK = "https://www.gutenberg.org/cache/epub/73581/pg73581.txt";
 const char* MOBY_DICK = "https://www.gutenberg.org/cache/epub/2701/pg2701.txt";
-const unsigned int CRAZY_BINARY_LITERAL = 0b1000111011110001;
-const unsigned int* P_2_C_L = &CRAZY_BINARY_LITERAL;
+const unsigned int INCONVENIENTLY_LARGE_BINARY_LITERAL = 0b1000111011110001;
+const unsigned int* P_2_C_L = &INCONVENIENTLY_LARGE_BINARY_LITERAL;
 const unsigned int** P_P_2_C_L = &P_2_C_L;
 const unsigned int*** P_3_2_C_L = &P_P_2_C_L;
 int curl_entry_counter = 0;
