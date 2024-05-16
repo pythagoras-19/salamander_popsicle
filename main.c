@@ -92,6 +92,8 @@ static void on_button_clicked(GtkWidget *widget, gpointer data);
 static void apply_css(GtkWidget *widget, const gchar *css);
 static void set_background_color(GtkWidget *widget);
 static gboolean boolean_set_background_color(GtkWidget *widget, GdkEvent *event, gpointer data);
+static const char* return_true();
+static const char* return_false();
 
 int main(int argc, char *argv[]) {
     printf("Hello, World!\n");
@@ -110,7 +112,7 @@ int main(int argc, char *argv[]) {
     printf("Dog stats:\nBreed: %s, Age: %d, Cute? %s, Weight: %f, Height: %f, Owner: %s\n",
            dd.breed,
            dd.age,
-           (dd.cute == 1) ? "true" : "false",
+           (dd.cute == 1) ? return_true() : return_false(),
            dd.weight,
            dd.height,
            dd.owner.name);
@@ -543,4 +545,12 @@ struct Monster initialize_monster() {
     monster.x_location = 50.0;
     monster.y_location = 50.0;
     return monster;
+}
+
+static const char* return_true() {
+    return "true";
+}
+
+static const char* return_false() {
+    return "false";
 }
