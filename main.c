@@ -14,6 +14,8 @@
 #define LOWER 0
 #define UPPER 300
 #define STEP 20
+#define GTK_WINDOW_HEIGHT 600
+#define GTK_WINDOW_WIDTH 600
 
 const char* SCARY_PHRASE = "LUKE, I AM YOUR FATHER -- and i'm global\n";
 const char* BLACKBOARD_CLOCK = "https://www.gutenberg.org/cache/epub/73581/pg73581.txt";
@@ -23,6 +25,7 @@ const unsigned int* P_2_C_L = &INCONVENIENTLY_LARGE_BINARY_LITERAL;
 const unsigned int** P_P_2_C_L = &P_2_C_L;
 const unsigned int*** P_3_2_C_L = &P_P_2_C_L;
 int curl_entry_counter = 0;
+int button_clicked_counter = 0;
 
 union sensor_data {
     int int_value;
@@ -86,8 +89,9 @@ int bit_manipulations_2();
 int bit_manipulations_3();
 struct Monster initialize_monster();
 static void on_button_clicked(GtkWidget *widget, gpointer data);
-int build_window();
 static void apply_css(GtkWidget *widget, const gchar *css);
+static void set_background_color(GtkWidget *widget);
+static gboolean boolean_set_background_color(GtkWidget *widget, GdkEvent *event, gpointer data);
 
 int main(int argc, char *argv[]) {
     printf("Hello, World!\n");
@@ -144,13 +148,16 @@ int main(int argc, char *argv[]) {
     gtk_window_set_title(GTK_WINDOW(window), "Salamander Popsicle");
 
     //set the default window size
-    gtk_window_set_default_size(GTK_WINDOW(window), 600, 600);
+    gtk_window_set_default_size(GTK_WINDOW(window), GTK_WINDOW_WIDTH, GTK_WINDOW_HEIGHT);
 
     //connect the "destroy" event to the main GTK loop exit function
     g_signal_connect(window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
 
+    // Connect the "realize" event to set the background color
+    g_signal_connect(window, "realize", G_CALLBACK(boolean_set_background_color), NULL);
+
     //create a new button with a label
-    button = gtk_button_new_with_label("Click Me test");
+    button = gtk_button_new_with_label("Click Me Button");
 
     //connect the "clicked" event of the button to the callback function
     g_signal_connect(button, "clicked", G_CALLBACK(on_button_clicked), NULL);
@@ -158,9 +165,11 @@ int main(int argc, char *argv[]) {
     //add the button to the window
     gtk_container_add(GTK_CONTAINER(window), button);
 
+    // set_background_color(window);
+
     //css
-    const gchar *css = "window { background-color: blue }";
-    apply_css(window, css);
+    // const gchar *css = "window { background-color: blue }";
+    // apply_css(window, css);
 
     //show all widgets in the window
     gtk_widget_show_all(window);
@@ -181,7 +190,37 @@ static void apply_css(GtkWidget *widget, const gchar *css) {
 
 
 static void on_button_clicked(GtkWidget *widget, gpointer data) {
-    g_print("Button clicked yo\n");
+    button_clicked_counter+=1;
+    g_print("Button clicked: %d time(s)\n", button_clicked_counter);
+}
+
+static void set_background_color(GtkWidget *widget) {
+    GdkRGBA color;
+    // lets start making it red
+    // TODO: Change color
+    gdk_rgba_parse(&color, "red");
+
+    GtkStyleContext *context = gtk_widget_get_style_context(widget);
+    gtk_style_context_add_class(context, "custom-bg");
+
+    GtkCssProvider *provider = gtk_css_provider_new();
+    gchar *css = g_strdup_printf("window.custom-bg { background-color: %s; }", gdk_rgba_to_string(&color));
+    gtk_css_provider_load_from_data(provider, css, -1, NULL);
+
+    gtk_style_context_add_provider(context, GTK_STYLE_PROVIDER(provider), GTK_STYLE_PROVIDER_PRIORITY_USER);
+
+    g_object_unref(provider);
+    g_free(css);
+}
+
+// Callback function to set background color
+static gboolean boolean_set_background_color(GtkWidget *widget, GdkEvent *event, gpointer data) {
+    printf("Here!\n");
+    GdkWindow *window = gtk_widget_get_window(widget);
+    GdkRGBA color;
+    gdk_rgba_parse(&color, "red");
+    gdk_window_set_background_rgba(window, &color);
+    return TRUE;
 }
 
 
