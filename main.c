@@ -62,7 +62,7 @@ struct Dog {
 };
 
 void to_celsius();
-void arr();
+void array_operations();
 int max(int* arr, int size);
 int min(int* arr, int size);
 int avg(int* arr, int size);
@@ -82,7 +82,7 @@ int process_management();
 void execute_other_process();
 void memory_operations_warmup();
 void bit_operations_warmup();
-void print_binary(unsigned int num);
+void print_binary(unsigned int decimal_number);
 void print_new_line();
 int bit_manipulations_1();
 int bit_manipulations_2();
@@ -99,7 +99,7 @@ int main(int argc, char *argv[]) {
     printf("Hello, World!\n");
     to_celsius();
     curl_entry();
-    arr();
+    array_operations();
     struct Person pp = create_person();
     printf("Age of %s: %d, with an ID #:%d, and likes programming in C? %s. Owns dog? %s\n",
            pp.name,
@@ -231,23 +231,21 @@ void print_new_line() {
 }
 
 
-void print_binary(unsigned int num) {
+void print_binary(unsigned int decimal_number) {
     int i, started = 0;
-    if (num == 0) {
+    if (decimal_number == 0) {
         printf("0\n");
         return;
     }
     for (i = 31; i >= 0; i--) {
-        if (num & (1 << i)) {
+        if (decimal_number & (1 << i)) {
             started = 1;
         }
         if (started) {
-            putchar((num & (1 << i)) ? '1' : '0');
+            putchar((decimal_number & (1 << i)) ? '1' : '0');
         }
     }
     print_new_line();
-
-    printf("Curl entry counter: %d\n", curl_entry_counter);
 }
 
 int bit_manipulations_1() {
@@ -258,7 +256,7 @@ int bit_manipulations_1() {
         while(k == 0) {
             k += 1;
         }
-        return k << i << j;
+        return k << i << j || (k >> i >> j ^ k);
     }
 }
 
@@ -288,7 +286,6 @@ int bit_manipulations_3() {
 }
 
 void memory_operations_warmup() {
-    printf("=====HELLO=====");
     char source[] = "Hello this is a memory operation warmup!";
     char destination[100];
     memcpy(destination, source, strlen(source) + 1);
@@ -416,7 +413,7 @@ void to_celsius() {
     }
 }
 
-void arr() {
+void array_operations() {
     int numbers[5] = {0, 1, 2, 3, 4};
     int numbers_size = sizeof(numbers) / sizeof(numbers[0]);
     printf("%d\n", numbers_size);
