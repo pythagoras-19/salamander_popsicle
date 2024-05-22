@@ -16,6 +16,7 @@
 #define STEP 20
 #define GTK_WINDOW_HEIGHT 600
 #define GTK_WINDOW_WIDTH 600
+#define GROUP_SIZE 5
 
 const char* SCARY_PHRASE = "LUKE, I AM YOUR FATHER -- and i'm global\n";
 const char* BLACKBOARD_CLOCK = "https://www.gutenberg.org/cache/epub/73581/pg73581.txt";
@@ -42,7 +43,7 @@ struct Person {
 };
 
 struct Group {
-    struct Person Person;
+    struct Person* persons;
     int size;
 };
 
@@ -99,24 +100,27 @@ static void set_background_color(GtkWidget *widget);
 static gboolean boolean_set_background_color(GtkWidget *widget, GdkEvent *event, gpointer data);
 static const char* return_true();
 static const char* return_false();
+struct Group initialize_group(int size);
+void add_person_to_group(struct Group* group, int index, const char* name, int age, int id, bool likes_c_programming, bool owns_dog);
+void print_group(struct Group group);
+
 
 int main(int argc, char *argv[]) {
     printf("Hello, World!\n");
-    struct Group group;
-    group.size = 0;
+    struct Group g = initialize_group(GROUP_SIZE);
+    print_group(g);
     to_celsius();
     curl_entry();
     array_operations();
     struct Person pp = create_person();
+    add_person_to_group(&g, 0, pp.name, pp.age, pp.id, pp.likes_c_programming, pp.owns_dog);
+    print_group(g);
     printf("Age of %s: %d, with an ID #:%d, and likes programming in C? %s. Owns dog? %s\n",
            pp.name,
            pp.age,
            pp.id,
            pp.likes_c_programming == 1  ? "true" : "false",
            pp.owns_dog == 1 ? "true" : "false");
-
-    group.Person = pp;
-    group.size += 1;
 
     struct Dog dd = create_dog(pp);
     printf("Dog stats:\nBreed: %s, Age: %d, Cute? %s, Weight: %f, Height: %f, Owner: %s\n",
@@ -190,6 +194,36 @@ int main(int argc, char *argv[]) {
     gtk_main();
     return 0;
 }
+
+struct Group initialize_group(int size) {
+    struct Group group;
+    group.size = size;
+    group.persons = (struct Person*)malloc(size * sizeof(struct Person));
+    return group;
+}
+
+void add_person_to_group(struct Group* group, int index, const char* name, int age, int id, bool likes_c_programming, bool owns_dog) {
+    if (index >= 0 && index < group->size) {
+        group->persons[index].name = name;
+        group->persons[index].age = age;
+        group->persons[index].id = id;
+        group->persons[index].likes_c_programming = likes_c_programming;
+        group->persons[index].owns_dog = owns_dog;
+    }
+}
+
+void print_group(struct Group group) {
+    for (int i = 0; i < group.size; i++) {
+        printf("Person %d:\n", i + 1);
+        printf("Name: %s\n", group.persons[i].name);
+        printf("Age: %d\n", group.persons[i].age);
+        printf("ID: %d\n", group.persons[i].id);
+        printf("Likes C Programming: %s\n", group.persons[i].likes_c_programming ? "Yes" : "No");
+        printf("Owns a Dog: %s\n", group.persons[i].owns_dog ? "Yes" : "No");
+        printf("\n");
+    }
+}
+
 
 static void apply_css(GtkWidget *widget, const gchar *css) {
     GtkCssProvider *provider = gtk_css_provider_new();
