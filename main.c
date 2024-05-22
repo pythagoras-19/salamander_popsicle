@@ -102,6 +102,8 @@ static const char* return_false();
 
 int main(int argc, char *argv[]) {
     printf("Hello, World!\n");
+    struct Group group;
+    group.size = 0;
     to_celsius();
     curl_entry();
     array_operations();
@@ -112,6 +114,9 @@ int main(int argc, char *argv[]) {
            pp.id,
            pp.likes_c_programming == 1  ? "true" : "false",
            pp.owns_dog == 1 ? "true" : "false");
+
+    group.Person = pp;
+    group.size += 1;
 
     struct Dog dd = create_dog(pp);
     printf("Dog stats:\nBreed: %s, Age: %d, Cute? %s, Weight: %f, Height: %f, Owner: %s\n",
