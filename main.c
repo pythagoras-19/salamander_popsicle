@@ -41,6 +41,11 @@ struct Person {
     bool owns_dog;
 };
 
+struct Group {
+    struct Person Person;
+    int size;
+};
+
 struct Monster {
     const char* name;
     double speed;
