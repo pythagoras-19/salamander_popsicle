@@ -17,6 +17,7 @@
 #define GTK_WINDOW_HEIGHT 600
 #define GTK_WINDOW_WIDTH 600
 #define GROUP_SIZE 5
+#define ORGANIZATION_SIZE 10
 
 const char* SCARY_PHRASE = "LUKE, I AM YOUR FATHER -- and i'm global\n";
 const char* BLACKBOARD_CLOCK = "https://www.gutenberg.org/cache/epub/73581/pg73581.txt";
@@ -114,6 +115,8 @@ struct Organization initialize_organization(int size);
 int main(int argc, char *argv[]) {
     printf("Hello, World!\n");
     struct Group g = initialize_group(GROUP_SIZE);
+    struct Organization organization = initialize_organization(ORGANIZATION_SIZE);
+    printf("Organization size: %d\n", organization.size);
     print_group(g);
     to_celsius();
     curl_entry();
