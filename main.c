@@ -47,6 +47,11 @@ struct Group {
     int size;
 };
 
+struct Organization {
+    struct Group* groups;
+    int size;
+};
+
 struct Monster {
     const char* name;
     double speed;
@@ -103,6 +108,7 @@ static const char* return_false();
 struct Group initialize_group(int size);
 void add_person_to_group(struct Group* group, int index, const char* name, int age, int id, bool likes_c_programming, bool owns_dog);
 void print_group(struct Group group);
+struct Organization initialize_organization(int size);
 
 
 int main(int argc, char *argv[]) {
@@ -135,9 +141,8 @@ int main(int argc, char *argv[]) {
     printf("%s", SCARY_PHRASE);
 
     sensor_data_operations();
-
-//    int success = process_management();
-//    printf("success: %d\n", success);
+    // int success = process_management();
+    // printf("success: %d\n", success);
 
     memory_operations_warmup();
     bit_operations_warmup();
@@ -193,6 +198,13 @@ int main(int argc, char *argv[]) {
     //enter the GTK main loop
     gtk_main();
     return 0;
+}
+
+struct Organization initialize_organization(int size) {
+    struct Organization org;
+    org.size = size;
+    org.groups = (struct Group*)malloc(size * sizeof(struct Group));
+    return org;
 }
 
 struct Group initialize_group(int size) {
