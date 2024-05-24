@@ -35,6 +35,11 @@ union sensor_data {
     char bytes[4];
 };
 
+enum PersonSwitch {
+    ON,
+    OFF
+};
+
 struct Person {
     const char* name;
     int age;
