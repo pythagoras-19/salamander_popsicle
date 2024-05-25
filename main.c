@@ -78,6 +78,11 @@ struct Dog {
     struct Person owner;
 };
 
+typedef struct {
+    const char* name;
+    int health;
+} Boss;
+
 void to_celsius();
 void array_operations();
 int max(int* arr, int size);
@@ -115,6 +120,7 @@ struct Group initialize_group(int size);
 void add_person_to_group(struct Group* group, int index, const char* name, int age, int id, bool likes_c_programming, bool owns_dog);
 void print_group(struct Group group);
 struct Organization initialize_organization(int size);
+Boss createBoss(int health, const char* name);
 
 
 int main(int argc, char *argv[]) {
@@ -205,7 +211,17 @@ int main(int argc, char *argv[]) {
 
     //enter the GTK main loop
     gtk_main();
+
+    Boss new_boss = createBoss(100, "boss1");
+    printf("%s   %d", new_boss.name, new_boss.health);
     return 0;
+}
+
+Boss createBoss(int health, const char* name) {
+    Boss b;
+    b.name = name;
+    b.health = health;
+    return b;
 }
 
 struct Organization initialize_organization(int size) {
