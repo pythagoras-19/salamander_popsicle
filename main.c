@@ -217,6 +217,9 @@ int main(int argc, char *argv[]) {
 
     Boss another_new_boss = createBoss(100, "boss2");
     printf("%s   %d", another_new_boss.name, another_new_boss.health);
+
+    another_new_boss = createBoss(100, "boss3");
+    printf("%s   %d", another_new_boss.name, another_new_boss.health);
     return 0;
 }
 
