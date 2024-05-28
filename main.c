@@ -18,6 +18,7 @@
 #define GTK_WINDOW_WIDTH 600
 #define GROUP_SIZE 5
 #define ORGANIZATION_SIZE 10
+#define INT_BIT_COUNT 16
 
 const char* SCARY_PHRASE = "LUKE, I AM YOUR FATHER -- and i'm global\n";
 const char* BLACKBOARD_CLOCK = "https://www.gutenberg.org/cache/epub/73581/pg73581.txt";
@@ -370,7 +371,7 @@ int bit_manipulations_3() {
     printf("j: %d\n", *j);
 
     printf("Returning...\n");
-    printf("%d\n", (i<<4) * (i<<5));
+    printf("%d\n", (i<<INT_BIT_COUNT) * (i<<5));
     return i << 4 * (i << 5);
 }
 
@@ -381,8 +382,8 @@ int bit_manipulations_4() {
     printf("j: %p\n", j);
     printf("j: %d\n", *j);
 
-    printf("Returning...\n");
-    printf("%d\n", (i<<4) * (i<<5));
+    printf("Returning FROM 4...\n");
+    printf("%d\n", (i<<INT_BIT_COUNT) * (i<<5));
     return i << 4 * (i << 5);
 }
 
