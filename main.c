@@ -392,11 +392,9 @@ int bit_manipulations_5() {
     int i = 6;
     int* j = &i;
     int** k = &j;
-
     printf("j: %p\n", j);
     printf("j: %d\n", *j);
     printf("k: %d\n", **k);
-
     printf("Returning FROM 4...\n");
     printf("%d\n", (i<<INT_BIT_COUNT));
     return i << 4 * (i << 5);
