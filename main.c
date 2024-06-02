@@ -292,10 +292,8 @@ static void set_background_color(GtkWidget *widget) {
     // lets start making it red
     // TODO: Change color
     gdk_rgba_parse(&color, "red");
-
     GtkStyleContext *context = gtk_widget_get_style_context(widget);
     gtk_style_context_add_class(context, "custom-bg");
-
     GtkCssProvider *provider = gtk_css_provider_new();
     gchar *css = g_strdup_printf("window.custom-bg { background-color: %s; }", gdk_rgba_to_string(&color));
     gtk_css_provider_load_from_data(provider, css, -1, NULL);
