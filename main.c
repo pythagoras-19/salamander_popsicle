@@ -156,8 +156,6 @@ int main(int argc, char *argv[]) {
     does_not_own_dog(pp);
     printf("%s", SCARY_PHRASE);
     sensor_data_operations();
-    // int success = process_management();
-    // printf("success: %d\n", success);
 
     memory_operations_warmup();
     bit_operations_warmup();
