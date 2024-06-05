@@ -80,6 +80,10 @@ struct Dog {
 };
 
 typedef struct {
+    struct Dog* dog;
+} Animal;
+
+typedef struct {
     const char* name;
     int health;
 } Boss;
