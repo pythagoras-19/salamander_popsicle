@@ -129,7 +129,6 @@ void print_group(struct Group group);
 struct Organization initialize_organization(int size);
 Boss createBoss(int health, const char* name);
 
-
 int main(int argc, char *argv[]) {
     printf("Hello, World!\n");
     struct Group g = initialize_group(GROUP_SIZE);
@@ -273,7 +272,6 @@ void print_group(struct Group group) {
     }
 }
 
-
 static void apply_css(GtkWidget *widget, const gchar *css) {
     GtkCssProvider *provider = gtk_css_provider_new();
     gtk_css_provider_load_from_data(provider, css, -1, NULL);
@@ -316,11 +314,9 @@ static gboolean boolean_set_background_color(GtkWidget *widget, GdkEvent *event,
     return TRUE;
 }
 
-
 void print_new_line() {
     printf("\n");
 }
-
 
 void print_binary(unsigned int decimal_number) {
     int i, started = 0;
