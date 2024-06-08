@@ -19,6 +19,7 @@
 #define GROUP_SIZE 5
 #define ORGANIZATION_SIZE 10
 #define INT_BIT_COUNT 16
+#define SHIFT_CONSTANT_COMMON 7
 
 const char* SCARY_PHRASE = "LUKE, I AM YOUR FATHER -- and i'm global\n";
 const char* BLACKBOARD_CLOCK = "https://www.gutenberg.org/cache/epub/73581/pg73581.txt";
@@ -117,6 +118,7 @@ int bit_manipulations_3();
 int bit_manipulations_4();
 int bit_manipulations_5();
 int bit_manipulations_6();
+int bit_manipulations_7();
 struct Monster initialize_monster();
 static void on_button_clicked(GtkWidget *widget, gpointer data);
 static void apply_css(GtkWidget *widget, const gchar *css);
@@ -174,6 +176,8 @@ int main(int argc, char *argv[]) {
     x = bit_manipulations_5();
     printf("x: %d\n", x);
     x = bit_manipulations_6();
+    printf("x: %d\n", x);
+    x = bit_manipulations_7();
     printf("x: %d\n", x);
     struct Monster m = initialize_monster();
     m.name = "Entity-1x";
@@ -400,6 +404,11 @@ int bit_manipulations_5() {
 int bit_manipulations_6() {
     int i = 9;
     return i << 1 != 0;
+}
+
+int bit_manipulations_7() {
+    int i = 7;
+    return i << SHIFT_CONSTANT_COMMON;
 }
 
 void memory_operations_warmup() {
