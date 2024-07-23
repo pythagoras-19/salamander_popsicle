@@ -119,6 +119,7 @@ int bit_manipulations_4();
 int bit_manipulations_5();
 int bit_manipulations_6();
 int bit_manipulations_7();
+int bit_manipulations_8();
 struct Monster initialize_monster();
 static void on_button_clicked(GtkWidget *widget, gpointer data);
 static void apply_css(GtkWidget *widget, const gchar *css);
@@ -178,6 +179,8 @@ int main(int argc, char *argv[]) {
     x = bit_manipulations_6();
     printf("x: %d\n", x);
     x = bit_manipulations_7();
+    printf("x: %d\n", x);
+    x = bit_manipulations_8();
     printf("x: %d\n", x);
     struct Monster m = initialize_monster();
     m.name = "Entity-1x";
@@ -409,6 +412,11 @@ int bit_manipulations_6() {
 int bit_manipulations_7() {
     int i = 7;
     return i << SHIFT_CONSTANT_COMMON;
+}
+
+int bit_manipulations_8() {
+    int i = 8;
+    return i & 0;
 }
 
 void memory_operations_warmup() {
